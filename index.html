@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>MAHP Media</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="MAHP: noticias en español hechas con agentes de IA propios. Publicidad digital y herramientas de IA para negocios.">
+<meta name="description" content="MAHP: AI agents for business, tested every day in a Spanish-language news outlet. AI tools and digital advertising.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Special+Elite&family=Titan+One&display=swap" rel="stylesheet">
@@ -80,6 +80,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .top nav { display: flex; gap: 6px 18px; flex-wrap: wrap; }
 .top nav a { color: var(--paper); text-decoration: none; font-family: var(--f-type); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; }
 .top nav a:hover { color: var(--green); }
+.top nav { margin-left: auto; }
+.top a.lang { flex-shrink: 0; color: var(--green); text-decoration: none; font-family: var(--f-type); font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; border: 2px solid var(--green); border-radius: 999px; padding: 2px 10px; }
+.top a.lang:hover { background: var(--green); color: var(--ink); }
 
 /* Hero */
 .hero { padding-block: clamp(32px, 6vw, 72px) 28px; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 24px; align-items: center; }
@@ -190,6 +193,16 @@ figcaption { font-family: var(--f-type); font-size: .8rem; margin-top: 10px; lin
 .loops { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .side { display: flex; flex-direction: column; gap: 16px; }
 .links { display: flex; flex-wrap: wrap; gap: 10px; }
+.weekly { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+.weekly figure { margin: 0; min-width: 0; }
+.weekly video { width: 100%; aspect-ratio: 16 / 9; height: auto; display: block; background: var(--ink); border: 6px solid var(--ink); border-radius: 18px; box-shadow: 8px 8px 0 var(--green); }
+.weekly figcaption { margin-top: 10px; font-size: .95rem; }
+.slots { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.slots ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; counter-reset: s; }
+.slots li { counter-increment: s; display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 12px; background: var(--paper-hi); border: 4px solid var(--ink); border-radius: 14px; padding: 10px 12px; }
+.slots li::before { content: counter(s); grid-row: span 2; width: 36px; height: 36px; border-radius: 50%; background: var(--green); color: var(--ink); border: 3px solid var(--ink); display: grid; place-items: center; font-weight: 800; }
+.slots li b { display: block; }
+.slots li span { font-size: .95rem; }
 
 /* Ad services */
 .menu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
@@ -256,7 +269,7 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
   .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .facts div:nth-child(3) { border-left: 0; }
   .facts div:nth-child(n+3) { border-top: 4px dashed var(--ink); }
-  .showcase, .order { grid-template-columns: 1fr; }
+  .showcase, .order, .weekly { grid-template-columns: 1fr; }
   .menu { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tools { grid-template-columns: 1fr; }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -294,16 +307,17 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
 </head>
 <body>
 
-
 <header class="top">
   <div class="wrap">
-    <a href="#inicio" aria-label="MAHP, inicio"><img src="mahp-logo.png" alt="MAHP"></a>
-    <nav aria-label="Secciones">
-      <a href="#fabrica">La fábrica</a>
-      <a href="#anunciate">Anúnciate</a>
-      <a href="#ia">IA para tu negocio</a>
-      <a href="#pedido">Pide tu propuesta</a>
+    <a href="#inicio" aria-label="MAHP, home"><img src="mahp-logo.png" alt="MAHP"></a>
+    <nav aria-label="Sections">
+      <a href="#ia">AI for your business</a>
+      <a href="#fabrica">The factory</a>
+      <a href="#semanal">Saturdays</a>
+      <a href="#anunciate">Advertise</a>
+      <a href="#pedido">Get a proposal</a>
     </nav>
+    <a class="lang" href="es.html" hreflang="es" lang="es">Español</a>
   </div>
 </header>
 
@@ -311,41 +325,56 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
   <div class="wrap">
     <div class="hero">
       <div>
-        <p class="type">Medio digital &middot; Noticias en español &middot; Hecho con IA propia</p>
-        <h1>Noticias para los latinos, hechas en una <span class="inked">fábrica de IA</span></h1>
-        <p class="lead">MAHP cuenta todos los días las noticias de EE.&nbsp;UU., Canadá y Centroamérica que afectan a la comunidad latina. Las producimos con agentes de IA que construimos nosotros, y ahora ponemos esa fábrica a trabajar para tu negocio.</p>
+        <p class="type">AI agents &middot; Automation &middot; Spanish-language digital media</p>
+        <h1>AI agents that <span class="inked">work</span> for your business</h1>
+        <p class="lead">We test them every day at MAHP, a Spanish-language news outlet that runs on AI agents we built ourselves: they research, write, design and measure. We adapt those same tools to your business so your team gets hours of work back.</p>
         <div class="row">
-          <a class="btn go" href="#anunciate">Anúnciate en MAHP</a>
-          <a class="btn" href="#ia">Quiero IA para mi negocio</a>
+          <a class="btn go" href="#ia">I want AI for my business</a>
+          <a class="btn" href="#fabrica">See how it works</a>
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
         <div class="tv" id="heroTv"></div>
         <div class="boss" id="heroBoss"></div>
-        <div class="tag">EN VIVO TODOS LOS DÍAS</div>
+        <div class="tag">LIVE EVERY DAY</div>
       </div>
     </div>
     <div class="facts" role="list">
-      <div role="listitem"><b>8</b><span>historias reales al día, una cada dos horas</span></div>
-      <div role="listitem"><b>4</b><span>plataformas: YouTube, TikTok, Instagram y Facebook</span></div>
-      <div role="listitem"><b>2+</b><span>medios confiables detrás de cada historia</span></div>
-      <div role="listitem"><b>6</b><span>agentes de IA construidos para el canal</span></div>
+      <div role="listitem"><b>8</b><span>real stories a day, one every two hours</span></div>
+      <div role="listitem"><b>4</b><span>platforms: YouTube, TikTok, Instagram and Facebook</span></div>
+      <div role="listitem"><b>2+</b><span>trusted outlets behind every story</span></div>
+      <div role="listitem"><b>6</b><span>AI agents built for the channel</span></div>
     </div>
   </div>
+
+  <section id="ia" class="wrap" aria-labelledby="ia-title">
+    <div class="sec-head">
+      <p class="type">AI services</p>
+      <h2 id="ia-title">AI for your business</h2>
+      <p>The same tools that run MAHP, adapted to your business. No flashy demos: tools your team uses every day, with a person signing off on what matters.</p>
+    </div>
+    <div class="tools" id="tools"></div>
+    <ol class="steps">
+      <li><b>Conversation</b><span>You tell me which task eats up the most hours and how you do it today.</span></li>
+      <li><b>Prototype</b><span>I build a first version with your real data, and you test it.</span></li>
+      <li><b>Launch</b><span>We connect it to your tools and I train your team.</span></li>
+      <li><b>Fine-tuning</b><span>We measure how much time it saves and keep improving it.</span></li>
+    </ol>
+  </section>
 
   <section id="fabrica" class="factory" aria-labelledby="fab-title">
     <div class="floor">
       <div class="wrap floor-head">
         <div>
-          <p class="type">Baja para recorrer la línea</p>
-          <h2 id="fab-title">La fábrica</h2>
-          <p>Así viaja una noticia en MAHP: de la búsqueda de la mañana a las métricas de la semana. Las máquinas son agentes de IA; las decisiones las toma una persona.</p>
+          <p class="type">Scroll down to walk the line</p>
+          <h2 id="fab-title">The factory</h2>
+          <p>This is how a story travels through MAHP, from the morning search to the weekly metrics. The machines are AI agents; a person makes the decisions.</p>
         </div>
-        <div class="dots" id="dots" aria-label="Estaciones"></div>
+        <div class="dots" id="dots" aria-label="Stations"></div>
       </div>
       <div class="scene" id="scene" aria-hidden="true">
         <div class="strip" id="strip"></div>
-        <div class="crate" id="crate"><b id="crateLabel">Noticias del día</b><span>MAHP &middot; frágil</span></div>
+        <div class="crate" id="crate"><b id="crateLabel">Today's news</b><span>MAHP &middot; fragile</span></div>
       </div>
       <div class="wrap"><div class="card" id="card" aria-live="polite"></div></div>
     </div>
@@ -353,107 +382,113 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
 
   <section id="contenido" class="wrap" aria-labelledby="cont-title">
     <div class="sec-head">
-      <p class="type">Lo que sale de la línea</p>
-      <h2 id="cont-title">Así se ve</h2>
-      <p>Videos verticales a cámara con gráficos animados, carruseles y publicaciones escritas. Este es el formato en el que aparecería tu marca.</p>
+      <p class="type">What comes off the line</p>
+      <h2 id="cont-title">What it looks like</h2>
+      <p>Vertical on-camera videos with animated graphics, carousels and written posts, all in Spanish. This is the format your brand would appear in.</p>
     </div>
     <div class="showcase">
       <div class="phones">
-        <figure><video controls playsinline preload="none" poster="media/caravana.jpg" src="media/caravana.mp4"></video><figcaption>Cuarta caravana &middot; 16 nov 2026</figcaption></figure>
-        <figure><video controls playsinline preload="none" poster="media/urnas.jpg" src="media/urnas.mp4"></video><figcaption>ICE vs. Newsom en las urnas</figcaption></figure>
+        <figure><video controls playsinline preload="none" poster="media/caravana.jpg" src="media/caravana.mp4"></video><figcaption>Fourth caravan &middot; Nov 16, 2026</figcaption></figure>
+        <figure><video controls playsinline preload="none" poster="media/urnas.jpg" src="media/urnas.mp4"></video><figcaption>ICE vs. Newsom at the polls</figcaption></figure>
       </div>
       <div class="side">
-        <p class="type">Piezas hechas en el taller de gráficos</p>
+        <p class="type">Made in the graphics workshop</p>
         <div class="loops">
-          <figure><video class="lp" autoplay loop muted playsinline src="media/mg-ruta.mp4"></video><figcaption>Mapa con pin</figcaption></figure>
-          <figure><video class="lp" autoplay loop muted playsinline src="media/mg-3000.mp4"></video><figcaption>Infografía animada</figcaption></figure>
-          <figure><video class="lp" autoplay loop muted playsinline src="media/scene-giro.mp4"></video><figcaption>Escena rubber hose</figcaption></figure>
-          <figure><video class="lp" autoplay loop muted playsinline src="media/scene-que.mp4"></video><figcaption>Escena rubber hose</figcaption></figure>
+          <figure><video class="lp" autoplay loop muted playsinline src="media/mg-ruta.mp4"></video><figcaption>Pinned map</figcaption></figure>
+          <figure><video class="lp" autoplay loop muted playsinline src="media/mg-3000.mp4"></video><figcaption>Animated infographic</figcaption></figure>
+          <figure><video class="lp" autoplay loop muted playsinline src="media/scene-giro.mp4"></video><figcaption>Rubber hose scene</figcaption></figure>
+          <figure><video class="lp" autoplay loop muted playsinline src="media/scene-que.mp4"></video><figcaption>Rubber hose scene</figcaption></figure>
         </div>
-        <p class="type">Publicado en redes</p>
+        <p class="type">Published on social</p>
         <div class="links">
-          <a class="btn" href="https://www.instagram.com/p/Df0VECpD3SN/">Carrusel WhatsApp</a>
-          <a class="btn" href="https://www.instagram.com/p/DfzsTVTE20c/">Carrusel Nueva Orleans</a>
-          <a class="btn" href="https://www.instagram.com/reel/DfgFLQejjyr/">Reel ¡No paramos!</a>
+          <a class="btn" href="https://www.instagram.com/p/Df0VECpD3SN/">WhatsApp carousel</a>
+          <a class="btn" href="https://www.instagram.com/p/DfzsTVTE20c/">New Orleans carousel</a>
+          <a class="btn" href="https://www.instagram.com/reel/DfgFLQejjyr/">Reel: ¡No paramos!</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="semanal" class="wrap" aria-labelledby="week-title">
+    <div class="sec-head">
+      <p class="type">Long format &middot; Every Saturday on YouTube</p>
+      <h2 id="week-title">Your week on MAHP</h2>
+      <p>Every Saturday I publish a 6 to 10 minute horizontal video, in Spanish, that tells the full stories of the week with animated graphics made in the factory. It is the format where a brand gets the most time and attention.</p>
+    </div>
+    <div class="weekly">
+      <figure><video controls playsinline preload="none" poster="media/semana.jpg" src="media/semana.mp4"></video><figcaption>Preview of the November 14, 2026 recap</figcaption></figure>
+      <div class="slots">
+        <p class="type">Spots for your brand</p>
+        <ol>
+          <li><b>Opening</b><span>"This recap is brought to you by&hellip;", with your logo on screen.</span></li>
+          <li><b>Mid-video break</b><span>A 30 to 60 second segment about your business, told by me.</span></li>
+          <li><b>Description and pinned comment</b><span>Your link stays on the video for as long as it is online.</span></li>
+        </ol>
+        <a class="btn go" href="#pedido" data-pick="Weekly recap">Sponsor a Saturday</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="who-title">
+    <div class="who">
+      <div id="whoArt" role="img" aria-label="Caricature of Miguel Hernandez"></div>
+      <div>
+        <p class="type">Who is behind it</p>
+        <h2 id="who-title" style="font-size:clamp(1.6rem,4.5vw,2.4rem)">Miguel Hernandez</h2>
+        <p>Founder of MAHP and Ad Operations Manager at Black Press Media, where I lead a team of 15 and run thousands of campaigns a month in Google Ad Manager 360. I have worked in digital marketing since 2017, and I build AI tools for sales and content teams.</p>
+        <p><a class="btn" href="https://claude.ai/artifact/5j49P4RH1cXTAve8zpZDeR">See my portfolio</a></p>
       </div>
     </div>
   </section>
 
   <section id="anunciate" class="wrap" aria-labelledby="ads-title">
     <div class="sec-head">
-      <p class="type">Publicidad digital</p>
-      <h2 id="ads-title">Anúnciate en MAHP</h2>
-      <p>Llega a la comunidad latina de EE.&nbsp;UU. y Canadá dentro de un contenido que ya mira todos los días. Cada formato se produce en la misma fábrica, con el mismo estilo del canal.</p>
+      <p class="type">Digital advertising</p>
+      <h2 id="ads-title">Advertise on MAHP</h2>
+      <p>Reach the Spanish-speaking Latino community in the U.S. and Canada inside content they already watch every day. Every format is produced in the same factory, in the channel's own style.</p>
     </div>
     <div class="menu" id="menu"></div>
     <div class="rules">
-      <div class="seal">MARCA<br>SEGURA</div>
+      <div class="seal">BRAND<br>SAFE</div>
       <ul>
-        <li>El contenido patrocinado siempre dice que es patrocinado.</li>
-        <li>No ponemos anuncios junto a noticias de víctimas o tragedias.</li>
-        <li>Cada pieza se aprueba contigo antes de publicarse, y te enviamos sus métricas.</li>
+        <li>Sponsored content is always labelled as sponsored.</li>
+        <li>No ads next to stories about victims or tragedies.</li>
+        <li>You approve every piece before it goes live, and we send you its metrics.</li>
       </ul>
-    </div>
-  </section>
-
-  <section id="ia" class="wrap" aria-labelledby="ia-title">
-    <div class="sec-head">
-      <p class="type">Servicios de IA</p>
-      <h2 id="ia-title">IA para tu negocio</h2>
-      <p>Las mismas herramientas que mueven a MAHP, adaptadas a tu negocio. Nada de demos bonitas: herramientas que tu equipo usa todos los días, con una persona aprobando lo importante.</p>
-    </div>
-    <div class="tools" id="tools"></div>
-    <ol class="steps">
-      <li><b>Conversación</b><span>Me cuentas qué tarea te quita más horas y cómo la haces hoy.</span></li>
-      <li><b>Prototipo</b><span>Construyo una primera versión con tus datos reales y la pruebas.</span></li>
-      <li><b>Puesta en marcha</b><span>La conectamos a tus herramientas y entreno a tu equipo.</span></li>
-      <li><b>Ajustes</b><span>Medimos cuánto tiempo ahorra y la afinamos.</span></li>
-    </ol>
-  </section>
-
-  <section class="wrap" aria-labelledby="who-title">
-    <div class="who">
-      <div id="whoArt" role="img" aria-label="Caricatura de Miguel Hernandez"></div>
-      <div>
-        <p class="type">Quién está detrás</p>
-        <h2 id="who-title" style="font-size:clamp(1.6rem,4.5vw,2.4rem)">Miguel Hernandez</h2>
-        <p>Fundador de MAHP y Ad Operations Manager en Black Press Media, donde dirijo un equipo de 15 personas y miles de campañas al mes en Google Ad Manager 360. Trabajo en marketing digital desde 2017 y construyo herramientas de IA para equipos de ventas y contenido.</p>
-        <p><a class="btn" href="https://claude.ai/artifact/5j49P4RH1cXTAve8zpZDeR">Ver mi portafolio</a></p>
-      </div>
     </div>
   </section>
 
   <section id="pedido" class="wrap" aria-labelledby="order-title">
     <div class="sec-head">
-      <p class="type">Mostrador</p>
-      <h2 id="order-title">Pide tu propuesta</h2>
-      <p>Marca lo que te interesa y te armo el mensaje. Lo copias y me lo envías por correo o por Instagram; te respondo con una propuesta a tu medida.</p>
+      <p class="type">Front counter</p>
+      <h2 id="order-title">Get a proposal</h2>
+      <p>Check what interests you and I will draft the message. Copy it and send it to me by email or Instagram; I will reply with a proposal made for you.</p>
     </div>
     <div class="order">
       <form class="form" id="form" novalidate>
-        <div><label for="f-name">Tu nombre</label><input type="text" id="f-name" autocomplete="name" placeholder="Ej. Ana López"></div>
-        <div><label for="f-biz">Tu negocio</label><input type="text" id="f-biz" autocomplete="organization" placeholder="Ej. Panadería La Esquina, Vancouver"></div>
-        <fieldset><legend>Publicidad en MAHP</legend><div class="picks" id="pick-ads"></div></fieldset>
-        <fieldset><legend>IA para tu negocio</legend><div class="picks" id="pick-ai"></div></fieldset>
-        <div><label for="f-goal">Tu objetivo</label>
+        <div><label for="f-name">Your name</label><input type="text" id="f-name" autocomplete="name" placeholder="e.g. Ana López"></div>
+        <div><label for="f-biz">Your business</label><input type="text" id="f-biz" autocomplete="organization" placeholder="e.g. Corner Bakery, Vancouver"></div>
+        <fieldset><legend>AI for your business</legend><div class="picks" id="pick-ai"></div></fieldset>
+        <fieldset><legend>Advertising on MAHP</legend><div class="picks" id="pick-ads"></div></fieldset>
+        <div><label for="f-goal">Your goal</label>
           <select id="f-goal">
-            <option>Conseguir más clientes latinos</option>
-            <option>Lanzar un producto o servicio</option>
-            <option>Ahorrar horas de trabajo</option>
-            <option>Todavía no lo tengo claro</option>
+            <option>Save hours of work</option>
+            <option>Automate a specific task</option>
+            <option>Reach more Latino customers</option>
+            <option>Launch a product or service</option>
+            <option>I am not sure yet</option>
           </select>
         </div>
       </form>
       <div class="ticket">
-        <h3>Tu mensaje</h3>
+        <h3>Your message</h3>
         <pre id="msg"></pre>
         <div class="links">
-          <button class="btn go" type="button" id="copy">Copiar mensaje</button>
-          <a class="btn" href="https://ig.me/m/mahp.media">Abrir Instagram</a>
+          <button class="btn go" type="button" id="copy">Copy message</button>
+          <a class="btn" href="https://ig.me/m/mahp.media">Open Instagram</a>
         </div>
         <p class="status" id="status" role="status"></p>
-        <p class="type" style="margin:0">Correo</p>
+        <p class="type" style="margin:0">Email</p>
         <p class="email">miguelhp.digital@gmail.com</p>
       </div>
     </div>
@@ -463,11 +498,11 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
 <footer>
   <div class="wrap">
     <img src="mahp-logo.png" alt="MAHP">
-    <p>Noticias en español para la comunidad latina &middot; @mahp.media &middot; @mahp.23</p>
+    <p>AI tools for business &middot; Spanish-language news for the Latino community &middot; @mahp.media &middot; @mahp.23</p>
     <div class="links"><a class="btn" href="https://www.instagram.com/mahp.media">Instagram</a><a class="btn" href="https://www.facebook.com/61576613196775">Facebook</a></div>
   </div>
 </footer>
-<button class="btn snd" id="snd" type="button" aria-pressed="true">Sonido sí</button>
+<button class="btn snd" id="snd" type="button" aria-pressed="true">Sound on</button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -548,7 +583,7 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
   }
   var sfx = { pop: function () { tone('sine', 420, 980, .09, .2); }, clank: function () { tone('square', 180, 90, .12, .06); }, ding: function () { tone('sine', 1318, 1318, .6, .14); tone('sine', 1760, 1760, .6, .09); } };
   var snd = document.getElementById('snd');
-  function paintSnd() { snd.setAttribute('aria-pressed', muted ? 'false' : 'true'); snd.textContent = muted ? 'Sonido no' : 'Sonido sí'; }
+  function paintSnd() { snd.setAttribute('aria-pressed', muted ? 'false' : 'true'); snd.textContent = muted ? 'Sound off' : 'Sound on'; }
   paintSnd();
   snd.addEventListener('click', function () { muted = !muted; try { localStorage.setItem('mahp-sound', muted ? 'off' : 'on'); } catch (e) {} paintSnd(); sfx.pop(); });
 
@@ -563,37 +598,37 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
   /* ---------- machines ---------- */
   var M = {
     radar: '<svg viewBox="0 0 220 200" aria-hidden="true"><rect class="m-body" x="38" y="30" width="144" height="166" rx="16"/><circle class="m-ink" cx="110" cy="92" r="52"/><circle cx="110" cy="92" r="34" fill="none" stroke="#92F933" stroke-width="2" opacity=".5"/><circle cx="110" cy="92" r="16" fill="none" stroke="#92F933" stroke-width="2" opacity=".5"/><path class="sweep anim" d="M110 92V40a52 52 0 0 1 45 26z" fill="#92F933" opacity=".6"/><circle class="blip anim" cx="134" cy="74" r="5" fill="#92F933"/><circle class="blip b2 anim" cx="90" cy="112" r="4" fill="#92F933"/><rect class="m-green" x="56" y="160" width="30" height="16" rx="4"/><circle class="m-ink" cx="150" cy="168" r="9"/><circle class="m-ink" cx="122" cy="168" r="6"/></svg>',
-    desk: '<svg viewBox="0 0 220 200" aria-hidden="true"><path class="m-line" d="M40 150v46M180 150v46"/><rect class="m-body" x="20" y="132" width="180" height="20" rx="5"/><path class="m-paper" d="M58 132l16-30h88l-16 30z"/><text class="m-txt okmark anim" x="112" y="124" font-size="13" text-anchor="middle" fill="#1B1714" transform="rotate(-6 112 120)">APROBADO</text><g class="stamp anim"><rect class="m-ink" x="100" y="20" width="24" height="40" rx="8"/><rect class="m-green" x="88" y="58" width="48" height="16" rx="4"/></g></svg>',
+    desk: '<svg viewBox="0 0 220 200" aria-hidden="true"><path class="m-line" d="M40 150v46M180 150v46"/><rect class="m-body" x="20" y="132" width="180" height="20" rx="5"/><path class="m-paper" d="M58 132l16-30h88l-16 30z"/><text class="m-txt okmark anim" x="112" y="124" font-size="13" text-anchor="middle" fill="#1B1714" transform="rotate(-6 112 120)">APPROVED</text><g class="stamp anim"><rect class="m-ink" x="100" y="20" width="24" height="40" rx="8"/><rect class="m-green" x="88" y="58" width="48" height="16" rx="4"/></g></svg>',
     typewriter: '<svg viewBox="0 0 220 200" aria-hidden="true"><g class="sheet anim"><rect class="m-paper" x="70" y="18" width="80" height="96"/><path d="M80 34h60M80 46h60M80 58h44M80 70h60M80 82h50" stroke="#1B1714" stroke-width="4" stroke-linecap="round"/></g><rect class="m-ink" x="56" y="104" width="108" height="16" rx="8"/><path class="m-body" d="M40 118h140l16 72H24z"/><g fill="#1B1714">' + (function () { var s = ''; for (var r = 0; r < 3; r++) for (var c = 0; c < 7; c++) s += '<circle cx="' + (52 + c * 19 + r * 4) + '" cy="' + (140 + r * 16) + '" r="6"/>'; return s; })() + '</g></svg>',
     camera: '<svg viewBox="0 0 220 200" aria-hidden="true"><path class="m-line" d="M76 196l34-70 34 70M110 126v70"/><circle class="m-body reel anim" cx="82" cy="50" r="22"/><circle class="m-body reel anim" cx="132" cy="50" r="22"/><path d="M82 34v32M66 50h32M132 34v32M116 50h32" stroke="#1B1714" stroke-width="4"/><rect class="m-body" x="54" y="72" width="104" height="58" rx="10"/><path class="m-body" d="M158 86l30-14v58l-30-14z"/><circle class="m-ink" cx="104" cy="101" r="18"/><circle cx="104" cy="101" r="8" fill="#92F933"/><circle class="rec anim" cx="70" cy="86" r="6" fill="#92F933" stroke="#1B1714" stroke-width="3"/><text class="m-txt" x="80" y="90" font-size="10">REC</text></svg>',
     easel: '<svg viewBox="0 0 220 200" aria-hidden="true"><path class="m-line" d="M70 196l40-180 40 180M84 160h52"/><rect class="m-body" x="34" y="30" width="152" height="116" rx="8"/><rect class="m-green bar anim" x="56" y="70" width="24" height="60"/><rect class="m-green bar anim" x="96" y="50" width="24" height="80"/><rect class="m-green bar anim" x="136" y="86" width="24" height="44"/><path d="M50 130h120" stroke="#1B1714" stroke-width="4"/><text class="m-txt" x="110" y="46" font-size="14" text-anchor="middle">+746</text></svg>',
-    tower: '<svg viewBox="0 0 220 200" aria-hidden="true"><path class="m-line" d="M110 66v130M76 196l34-70 34 70M90 160h40"/><path class="wave anim" d="M84 32a36 36 0 0 0 0 52M136 32a36 36 0 0 1 0 52" fill="none" stroke="#92F933" stroke-width="6" stroke-linecap="round"/><path class="wave w2 anim" d="M66 16a60 60 0 0 0 0 84M154 16a60 60 0 0 1 0 84" fill="none" stroke="#92F933" stroke-width="6" stroke-linecap="round"/><circle class="m-green" cx="110" cy="58" r="13"/><rect class="m-body" x="150" y="128" width="50" height="40" rx="8"/><text class="m-txt" x="175" y="146" font-size="11" text-anchor="middle">CADA</text><text class="m-txt" x="175" y="160" font-size="11" text-anchor="middle">2 H</text></svg>',
+    tower: '<svg viewBox="0 0 220 200" aria-hidden="true"><path class="m-line" d="M110 66v130M76 196l34-70 34 70M90 160h40"/><path class="wave anim" d="M84 32a36 36 0 0 0 0 52M136 32a36 36 0 0 1 0 52" fill="none" stroke="#92F933" stroke-width="6" stroke-linecap="round"/><path class="wave w2 anim" d="M66 16a60 60 0 0 0 0 84M154 16a60 60 0 0 1 0 84" fill="none" stroke="#92F933" stroke-width="6" stroke-linecap="round"/><circle class="m-green" cx="110" cy="58" r="13"/><rect class="m-body" x="150" y="128" width="50" height="40" rx="8"/><text class="m-txt" x="175" y="146" font-size="11" text-anchor="middle">EVERY</text><text class="m-txt" x="175" y="160" font-size="11" text-anchor="middle">2 HRS</text></svg>',
     screen: '<svg viewBox="0 0 220 200" aria-hidden="true"><path class="m-line" d="M110 150v30M76 196h68"/><rect class="m-body" x="24" y="28" width="172" height="124" rx="14"/><rect class="m-ink" x="38" y="42" width="144" height="96" rx="8"/><path d="M50 124h120M50 104h120M50 84h120M50 64h120" stroke="#4A433B" stroke-width="2"/><path class="draw anim" d="M52 122l26-20 22 10 28-34 22 10 20-30" fill="none" stroke="#92F933" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
   };
 
   /* ---------- stations ---------- */
   var S = [
-    { no: 'Radar', name: 'Radar de noticias', machine: 'radar', worker: 'tv', who: [['IA', 'Claude', 'ai']], crate: 'Noticias del día',
-      text: 'Cada mañana busca noticias publicadas ese mismo día, las filtra por lo que mejor funciona en el canal y propone cinco historias, cada una con su gancho.',
-      out: 'Sale: 5 historias candidatas, con fuentes' },
-    { no: 'Mesa', name: 'Mesa editorial', machine: 'desk', worker: 'miguel', who: [['Persona', 'Miguel', 'human']], crate: 'Historia elegida',
-      text: 'Una persona decide qué cuenta MAHP y con qué ángulo. Ninguna máquina elige qué se publica. Cada historia necesita al menos dos medios confiables.',
-      out: 'Sale: la historia del día y su ángulo' },
-    { no: 'Guion', name: 'Guionista', machine: 'typewriter', worker: 'news', who: [['IA', 'Claude', 'ai']], crate: 'Guion listo',
-      text: 'Escribe el guion por bloques, en el ritmo de las noticias rápidas, con el material de apoyo que va en pantalla y la idea para la miniatura.',
-      out: 'Sale: guion, lista de apoyos y miniatura' },
-    { no: 'Estudio', name: 'Estudio', machine: 'camera', worker: 'mic', who: [['Persona', 'Miguel', 'human'], ['IA', 'Claude', 'ai']], crate: 'Video grabado',
-      text: 'Miguel graba a cámara. La IA transcribe, corta los silencios, limpia y nivela la voz, y lo pone en el set de MAHP cuadro por cuadro, con el logo real.',
-      out: 'Sale: video vertical 1080 × 1920 en pantalla dividida' },
-    { no: 'Taller', name: 'Taller de gráficos', machine: 'easel', worker: 'pitch', who: [['IA', 'Claude', 'ai']], crate: 'Video con gráficos',
-      text: 'Arma infografías animadas al ritmo de la voz: contadores, mapas con pin, capturas resaltadas y escenas en estilo caricatura de los años 30.',
-      out: 'Sale: el video terminado, revisado cuadro por cuadro' },
-    { no: 'Social', name: 'Mesa social', machine: 'tower', worker: 'phone', who: [['IA', 'Muse (Meta AI)', 'muse']], crate: 'Publicado',
-      text: 'Publica una historia real cada dos horas, de 8:00 a 22:00, alternando posts escritos y videos. También arma carruseles de seis láminas y redacta respuestas a los comentarios. Nada sale sin aprobación.',
-      out: 'Sale: publicado en Instagram y Facebook' },
-    { no: 'Análisis', name: 'Analista', machine: 'screen', worker: 'chart', who: [['IA', 'Claude', 'ai'], ['IA', 'Muse', 'muse']], crate: 'Métricas',
-      text: 'Revisa las métricas de la semana y de los últimos 30 días, busca los mejores horarios para publicar y propone qué repetir y qué cambiar.',
-      out: 'Sale: el plan de la semana siguiente' }
+    { no: 'Radar', name: 'News radar', machine: 'radar', worker: 'tv', who: [['AI', 'Claude', 'ai']], crate: "Today's news",
+      text: 'Every morning it searches for news published that same day, filters it by what works best on the channel and pitches five stories, each with its hook.',
+      out: 'Output: 5 candidate stories, with sources' },
+    { no: 'Desk', name: 'Editorial desk', machine: 'desk', worker: 'miguel', who: [['Human', 'Miguel', 'human']], crate: 'Story picked',
+      text: 'A person decides what MAHP covers and from which angle. No machine chooses what gets published. Every story needs at least two trusted outlets.',
+      out: "Output: the day's story and its angle" },
+    { no: 'Script', name: 'Scriptwriter', machine: 'typewriter', worker: 'news', who: [['AI', 'Claude', 'ai']], crate: 'Script ready',
+      text: 'Writes the script in blocks, at the pace of fast news, with the on-screen support material and the thumbnail idea.',
+      out: 'Output: script, B-roll list and thumbnail' },
+    { no: 'Studio', name: 'Studio', machine: 'camera', worker: 'mic', who: [['Human', 'Miguel', 'human'], ['AI', 'Claude', 'ai']], crate: 'Video shot',
+      text: 'Miguel records on camera. The AI transcribes, cuts the silences, cleans and levels the voice, and places it on the MAHP set frame by frame, with the real logo.',
+      out: 'Output: 1080 × 1920 vertical split-screen video' },
+    { no: 'Workshop', name: 'Graphics workshop', machine: 'easel', worker: 'pitch', who: [['AI', 'Claude', 'ai']], crate: 'Video + graphics',
+      text: 'Builds animated infographics timed to the voice: counters, pinned maps, highlighted screenshots and 1930s cartoon-style scenes.',
+      out: 'Output: the finished video, checked frame by frame' },
+    { no: 'Social', name: 'Social desk', machine: 'tower', worker: 'phone', who: [['AI', 'Muse (Meta AI)', 'muse']], crate: 'Published',
+      text: 'Publishes a real story every two hours, from 8 a.m. to 10 p.m., alternating written posts and videos. It also builds six-slide carousels and drafts replies to comments. Nothing goes out without approval.',
+      out: 'Output: live on Instagram and Facebook' },
+    { no: 'Analysis', name: 'Analyst', machine: 'screen', worker: 'chart', who: [['AI', 'Claude', 'ai'], ['AI', 'Muse', 'muse']], crate: 'Metrics',
+      text: 'Reviews the metrics for the week and the last 30 days, finds the best times to post and suggests what to repeat and what to change.',
+      out: "Output: next week's plan" }
   ];
   var strip = document.getElementById('strip'), cardEl = document.getElementById('card'), dots = document.getElementById('dots');
   var crate = document.getElementById('crate'), crateLabel = document.getElementById('crateLabel');
@@ -602,7 +637,7 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
       '<div class="machine">' + M[s.machine] + '</div><div class="worker">' + (s.worker === 'miguel' ? waving(MIGUEL_SVG) : character(s.worker)) + '</div></div>';
   }).join('') + '<div class="belt" style="width:100%"></div>';
   var stations = Array.prototype.slice.call(strip.querySelectorAll('.station'));
-  dots.innerHTML = S.map(function (s, i) { return '<button type="button" aria-label="Estación ' + (i + 1) + ': ' + s.name + '">' + (i + 1) + '</button>'; }).join('');
+  dots.innerHTML = S.map(function (s, i) { return '<button type="button" aria-label="Station ' + (i + 1) + ': ' + s.name + '">' + (i + 1) + '</button>'; }).join('');
   var dotBtns = Array.prototype.slice.call(dots.querySelectorAll('button'));
 
   var factory = document.getElementById('fabrica'), sceneEl = document.getElementById('scene');
@@ -610,7 +645,7 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
   function stationWidth() { return Math.min(window.innerWidth * 0.84, 460); }
   function renderCard(i) {
     var s = S[i];
-    cardEl.innerHTML = '<div><p class="type" style="margin:0">Estación ' + (i + 1) + ' de ' + S.length + '</p><h3>' + s.name + '</h3><p>' + s.text + '</p></div>' +
+    cardEl.innerHTML = '<div><p class="type" style="margin:0">Station ' + (i + 1) + ' of ' + S.length + '</p><h3>' + s.name + '</h3><p>' + s.text + '</p></div>' +
       '<div class="meta">' + s.who.map(function (w) { return '<span class="chip ' + w[2] + '">' + w[0] + ': ' + w[1] + '</span>'; }).join('') + '</div>' +
       '<div class="out">' + s.out + '</div>';
   }
@@ -735,7 +770,7 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
       var l1 = words.slice(0, half).join(' '), l2 = words.slice(half).join(' ');
       fit(c, l1.length > l2.length ? l1 : l2, w - 60, 46, TITAN);
       if (l2) { c.fillText(l1, w / 2, 82); c.fillText(l2, w / 2, 128); } else c.fillText(l1, w / 2, 104);
-      c.font = '20px ' + TYPE; c.fillText('MAHP · FRÁGIL', w / 2, 170);
+      c.font = '20px ' + TYPE; c.fillText('MAHP · FRAGILE', w / 2, 170);
       crateTex.needsUpdate = true;
     }
     var crateSide = toon(WOOD), crateFront = new T.MeshBasicMaterial({ map: crateTex });
@@ -784,7 +819,7 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
         part(new T.BoxGeometry(2.2, 0.14, 1.1), PAPER_HI, 0, 1.05, 0, g);
         [[-1, -0.45], [1, -0.45], [-1, 0.45], [1, 0.45]].forEach(function (p) { part(new T.BoxGeometry(0.1, 1, 0.1), INK, p[0], 0.5, p[1], g, 0); });
         var paper = basic(new T.PlaneGeometry(0.9, 0.6), 0xffffff, 0.05, 1.13, 0.05, g); paper.rotation.x = -Math.PI / 2; paper.rotation.z = 0.12;
-        var okTex = canvasTex(256, 96, function (c, w, h) { c.strokeStyle = '#1B1714'; c.lineWidth = 8; rr(c, 8, 8, w - 16, h - 16, 14); c.stroke(); c.fillStyle = '#1B1714'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = '48px ' + TITAN; c.fillText('APROBADO', w / 2, h / 2 + 2); });
+        var okTex = canvasTex(256, 96, function (c, w, h) { c.strokeStyle = '#1B1714'; c.lineWidth = 8; rr(c, 8, 8, w - 16, h - 16, 14); c.stroke(); c.fillStyle = '#1B1714'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = '48px ' + TITAN; c.fillText('APPROVED', w / 2, h / 2 + 2); });
         var ok = basic(new T.PlaneGeometry(0.7, 0.26), 0xffffff, 0.05, 1.14, 0.08, g, { map: okTex, transparent: true }); ok.rotation.x = -Math.PI / 2; ok.rotation.z = 0.12;
         var stamp = new T.Group(); g.add(stamp);
         part(new T.CylinderGeometry(0.1, 0.1, 0.5, 12), INK, 0, 0.35, 0, stamp, 0);
@@ -832,7 +867,7 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
         [-1, 1].forEach(function (s) { var l = part(new T.CylinderGeometry(0.05, 0.05, 1.6, 6), INK, s * 0.32, 0.75, 0, g, 0); l.rotation.z = s * 0.4; });
         part(new T.SphereGeometry(0.22, 16, 12), GREEN, 0, 2.7, 0, g, 0.1);
         var rings = [0, 0.5].map(function (d) { var r = basic(new T.TorusGeometry(0.4, 0.035, 8, 40), GREEN, 0, 2.7, 0, g, { transparent: true, opacity: 0.8 }); r.userData.d = d; return r; });
-        var badgeTex = canvasTex(192, 128, function (c, w, h) { c.fillStyle = '#FBF4E2'; rr(c, 6, 6, w - 12, h - 12, 18); c.fill(); c.strokeStyle = '#1B1714'; c.lineWidth = 8; c.stroke(); c.fillStyle = '#1B1714'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = '34px ' + TITAN; c.fillText('CADA', w / 2, 44); c.fillText('2 H', w / 2, 88); });
+        var badgeTex = canvasTex(192, 128, function (c, w, h) { c.fillStyle = '#FBF4E2'; rr(c, 6, 6, w - 12, h - 12, 18); c.fill(); c.strokeStyle = '#1B1714'; c.lineWidth = 8; c.stroke(); c.fillStyle = '#1B1714'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = '34px ' + TITAN; c.fillText('EVERY', w / 2, 44); c.fillText('2 HRS', w / 2, 88); });
         basic(new T.PlaneGeometry(0.7, 0.47), 0xffffff, 0.75, 0.6, 0.2, g, { map: badgeTex, transparent: true });
         ticks.push(function (t, on) { rings.forEach(function (r) { var k = ((t * (on ? 0.9 : 0.4)) + r.userData.d) % 1; r.scale.setScalar(0.6 + k * 2.4); r.material.opacity = 0.9 * (1 - k); }); });
       },
@@ -942,15 +977,15 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
 
   /* ---------- ad menu ---------- */
   var ADS = [
-    { name: 'Video patrocinado', text: 'Tu marca dentro de una noticia vertical, con mención en la voz y tu logo al cierre.', where: ['TikTok', 'YouTube Shorts', 'Reels', 'Facebook'] },
-    { name: 'Video dedicado', text: 'Un video corto sobre tu negocio, contado con el estilo y los gráficos de MAHP.', where: ['TikTok', 'YouTube Shorts', 'Reels'], feat: true },
-    { name: 'Carrusel patrocinado', text: 'Seis láminas con gancho, dato grande y cierre con pregunta, firmado por tu marca.', where: ['Instagram', 'Facebook'] },
-    { name: 'Publicación escrita', text: 'Titular, resumen e imagen cuadrada en el estilo del canal, con enlace a tu negocio.', where: ['Instagram', 'Facebook'] },
-    { name: 'Resumen semanal', text: 'Presenta el resumen de los sábados: un video horizontal de 6 a 10 minutos con las historias de la semana.', where: ['YouTube'] },
-    { name: 'Paquete mensual', text: 'Una combinación de formatos durante el mes, con un reporte de resultados al final.', where: ['Todas las plataformas'] }
+    { name: 'Weekly recap', text: 'Sponsor the long Saturday video: an opening mention, a mid-video segment and your link in the description.', where: ['YouTube'], feat: true },
+    { name: 'Sponsored video', text: 'Your brand inside a vertical news video, with a voice mention and your logo at the end.', where: ['TikTok', 'YouTube Shorts', 'Reels', 'Facebook'] },
+    { name: 'Dedicated video', text: 'A short video about your business, told in MAHP\'s style and graphics.', where: ['TikTok', 'YouTube Shorts', 'Reels'] },
+    { name: 'Sponsored carousel', text: 'Six slides with a hook, a big number and a closing question, signed by your brand.', where: ['Instagram', 'Facebook'] },
+    { name: 'Written post', text: 'Headline, summary and square image in the channel\'s style, with a link to your business.', where: ['Instagram', 'Facebook'] },
+    { name: 'Monthly package', text: 'A mix of formats throughout the month, with a results report at the end.', where: ['All platforms'] }
   ];
   document.getElementById('menu').innerHTML = ADS.map(function (a, i) {
-    return '<article class="item' + (a.feat ? ' feat' : '') + '"><span class="no">Formato ' + (i + 1) + '</span><h3>' + a.name + '</h3><p>' + a.text + '</p><div class="where">' +
+    return '<article class="item' + (a.feat ? ' feat' : '') + '"><span class="no">Format ' + (i + 1) + '</span><h3>' + a.name + '</h3><p>' + a.text + '</p><div class="where">' +
       a.where.map(function (w) { return '<span class="chip">' + w + '</span>'; }).join('') + '</div></article>';
   }).join('');
 
@@ -964,12 +999,12 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
     deck: '<svg viewBox="0 0 48 48"><rect x="6" y="10" width="30" height="22" rx="3" fill="#F2E6CC"/><rect x="12" y="16" width="30" height="22" rx="3" fill="#92F933"/><path d="M18 24h18M18 30h12" stroke="#1B1714" stroke-width="3"/></svg>'
   };
   var TOOLS = [
-    { ico: 'radar', name: 'Radar de tu industria', text: 'Cada mañana recibes las noticias y cambios que afectan a tu negocio, resumidos y con sus fuentes.', proof: 'En MAHP: encuentra las historias del día antes de las 9:00.' },
-    { ico: 'pen', name: 'Agente de contenido', text: 'Ideas, guiones, carruseles y calendario para tus redes, escritos en el tono de tu marca.', proof: 'En MAHP: el Guionista y los carruseles de seis láminas.' },
-    { ico: 'film', name: 'Video automatizado', text: 'Limpieza de voz, cambio de fondo, subtítulos y gráficos animados para los videos que ya grabas.', proof: 'En MAHP: el Estudio y el Taller de gráficos.' },
-    { ico: 'chat', name: 'Mesa de comentarios', text: 'Respuestas redactadas para los comentarios y mensajes de tus redes. Tú apruebas antes de que salgan.', proof: 'En MAHP: revisión diaria de comentarios con una sola aprobación por tanda.' },
-    { ico: 'chart', name: 'Reportes automáticos', text: 'Paneles en Looker Studio y GA4 que se actualizan solos, para dejar de armar reportes a mano.', proof: 'Experiencia: dashboards que reemplazaron reportes manuales en un equipo de medios.' },
-    { ico: 'deck', name: 'Propuestas comerciales con IA', text: 'Una herramienta que investiga a tu cliente potencial y arma la propuesta con tus servicios y precios.', proof: 'Experiencia: diseñé una herramienta así para un equipo de ventas de medios.' }
+    { ico: 'radar', name: 'Industry radar', text: 'Every morning you get the news and changes that affect your business, summarized and with sources.', proof: 'At MAHP: it finds the day\'s stories before 9 a.m.' },
+    { ico: 'pen', name: 'Content agent', text: 'Ideas, scripts, carousels and a calendar for your social media, written in your brand\'s voice.', proof: 'At MAHP: the Scriptwriter and the six-slide carousels.' },
+    { ico: 'film', name: 'Automated video', text: 'Voice cleanup, background replacement, captions and animated graphics for the videos you already record.', proof: 'At MAHP: the Studio and the Graphics workshop.' },
+    { ico: 'chat', name: 'Comment desk', text: 'Drafted replies to the comments and messages on your social media. You approve them before they go out.', proof: 'At MAHP: daily comment review with one approval per batch.' },
+    { ico: 'chart', name: 'Automated reports', text: 'Looker Studio and GA4 dashboards that update themselves, so you stop building reports by hand.', proof: 'Experience: dashboards that replaced manual reports for a media team.' },
+    { ico: 'deck', name: 'AI sales proposals', text: 'A tool that researches your prospect and builds the proposal with your services and prices.', proof: 'Experience: I designed a tool like this for a media sales team.' }
   ];
   document.getElementById('tools').innerHTML = TOOLS.map(function (t) {
     return '<article class="tool"><div class="ico" aria-hidden="true">' + ICON[t.ico] + '</div><div><h3>' + t.name + '</h3><p>' + t.text + '</p><p class="proof">' + t.proof + '</p></div></article>';
@@ -988,29 +1023,36 @@ footer p { margin: 0; font-family: var(--f-type); font-size: .8rem; }
   function compose() {
     var name = document.getElementById('f-name').value.trim(), biz = document.getElementById('f-biz').value.trim();
     var ads = chosen('pick-ads'), ai = chosen('pick-ai'), goal = document.getElementById('f-goal').value;
-    var lines = ['Hola Miguel,', ''];
-    lines.push('Soy ' + (name || '[tu nombre]') + (biz ? ', de ' + biz : '') + '.');
-    if (ads.length) lines.push('Me interesa anunciarme en MAHP con: ' + ads.join(', ') + '.');
-    if (ai.length) lines.push('También me interesa: ' + ai.join(', ') + '.');
-    if (!ads.length && !ai.length) lines.push('Quiero saber qué opciones tienen para mi negocio.');
-    lines.push('Mi objetivo: ' + goal.toLowerCase() + '.', '', '¿Me puedes enviar una propuesta?');
+    var lines = ['Hi Miguel,', ''];
+    lines.push('I\'m ' + (name || '[your name]') + (biz ? ', from ' + biz : '') + '.');
+    if (ai.length) lines.push('I\'m interested in AI for my business: ' + ai.join(', ') + '.');
+    if (ads.length) lines.push((ai.length ? 'I\'m also interested in advertising on MAHP with: ' : 'I\'m interested in advertising on MAHP with: ') + ads.join(', ') + '.');
+    if (!ads.length && !ai.length) lines.push('I\'d like to know what options you have for my business.');
+    lines.push('My goal: ' + goal.charAt(0).toLowerCase() + goal.slice(1) + '.', '', 'Could you send me a proposal?');
     msg.textContent = lines.join('\n');
   }
   form.addEventListener('input', compose);
   form.addEventListener('change', function (e) { if (e.target.type === 'checkbox') sfx.pop(); compose(); });
   form.addEventListener('submit', function (e) { e.preventDefault(); });
   compose();
+  Array.prototype.forEach.call(document.querySelectorAll('[data-pick]'), function (a) {
+    a.addEventListener('click', function () {
+      var box = document.querySelector('#pick-ads input[value="' + a.getAttribute('data-pick') + '"]');
+      if (box && !box.checked) { box.checked = true; compose(); }
+    });
+  });
   var status = document.getElementById('status');
   document.getElementById('copy').addEventListener('click', function () {
     function fallback() {
       var r = document.createRange(); r.selectNodeContents(msg);
       var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      status.textContent = 'Mensaje seleccionado. Cópialo con tu teclado.';
+      status.textContent = 'Message selected. Copy it with your keyboard.';
     }
-    try { navigator.clipboard.writeText(msg.textContent).then(function () { status.textContent = 'Mensaje copiado. Pégalo en tu correo o en Instagram.'; sfx.ding(); }, fallback); }
+    try { navigator.clipboard.writeText(msg.textContent).then(function () { status.textContent = 'Message copied. Paste it into your email or Instagram.'; sfx.ding(); }, fallback); }
     catch (e) { fallback(); }
   });
 })();
 </script>
+
 </body>
 </html>
